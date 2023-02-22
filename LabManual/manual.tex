@@ -1,0 +1,235 @@
+
+\documentclass[12pt]{cornell}
+
+% add index support
+\makeindex
+
+% graphing programs
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{verbatim}
+\usepackage{fancyhdr}
+%\usepackage{titlesec}
+\usepackage{fancyvrb} 
+% hyperlink programs
+\usepackage[pdfmark, 
+breaklinks=true, 
+colorlinks=true,
+citecolor=blue,
+linkcolor=blue,
+menucolor=black,
+pagecolor=black,
+urlcolor=blue
+]{hyperref} % links in pdf
+%\usepackage[colorlinks]{hyperref} % links in dvi
+\usepackage{listings}
+\usepackage{amsfonts} 
+\usepackage{amssymb} 
+%\usepackage{tabto}
+
+\usepackage{tabularx,colortbl}
+\usepackage[chapter]{algorithm} 
+\usepackage{algorithmic} 
+\usepackage{blindtext}
+\usepackage{imakeidx}
+
+% for electronics:
+\usepackage[american]{circuitikz}
+
+\definecolor{DarkGreen}{rgb}{0,0.6,0}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\usepackage{tocloft}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{longtable}
+%\usepackage{textcomp}
+\usepackage{txfonts}
+
+\setlength{\cftchapnumwidth}{2em}
+\setlength{\cftsecnumwidth}{2.5em}
+\setlength{\cftsubsecnumwidth}{3.5em}
+\setlength{\cftsubsubsecnumwidth}{4.5em}
+
+\addtolength{\cftsecindent}{0.5em}
+\addtolength{\cftsubsecindent}{0.5em}
+\addtolength{\cftsubsubsecindent}{0.5em}
+
+
+\newfont{\Bp}{msbm10}
+\newfont{\BpBig}{msbm10 scaled\magstep2}
+\newfont{\Sc}{eusm10}
+\newfont{\ScBig}{eusm10 scaled\magstep3}
+\newfont{\Fr}{eufm10}
+\newfont{\FrBig}{eufm10 scaled\magstep1}
+
+% some commands:
+\newcommand{\dxi}{{\tt m\_xDeltaInput}}
+\newcommand{\dyi}{{\tt m\_yDeltaInput}}
+\newcommand{\dci}{{\tt m\_cDeltaInput}}
+\newcommand{\dxo}{{\tt m\_xDeltaOutput}}
+\newcommand{\dyo}{{\tt m\_yDeltaOutput}}
+\newcommand{\dco}{{\tt m\_cDeltaOutput}}
+\newcommand{\ttf}[1]{{\tt #1}}
+\newcommand{\tbl}[2]{{\begin{tabular}{c} #1 \\ #2 \end{tabular}}}
+
+\newcommand{\urltwo}[2]{\mbox{\href{#1}{\tt #2}}}
+\newcommand{\qnorm}[1]{\|#1\|_{\bQ}}
+\newcommand{\qdot}[2]{\lrb #1, #2 \rrb_{\bQ}}
+\newcommand{\kdot}[2]{\lrb #1, #2 \rrb_{\bf k}}
+\newcommand{\tdot}[2]{\lrb #1, #2 \rrb}
+\newcommand{\mydiff}[2]{\lrb #1 - #2 \rrb}
+\newcommand{\lena}{\textit{lena}}
+\newcommand{\barb}{\textit{barbara}}
+\newcommand{\boat}{\textit{boat}}
+\newcommand{\leaves}{\textit{leaves}}
+\newcommand{\rings}{\textit{rings}}
+\newcommand{\treg}{\textit{train region}}
+\newcommand{\dreg}{\textit{denoise region}}
+\newcommand{\oreg}{\textit{overlap region}}
+\newcommand{\sil}{\sigma_l^2}
+\newcommand{\sn}{\sigma^2}
+\newcommand{\bn}{{\mbox{\bf \FrBig N}}}
+\newcommand{\n}{\mbox{\Fr N}}
+%\newcommand{\bn}{\bf N}
+%\newcommand{\n}{N}
+\newcommand{\bY}{\textbf{Y}}
+\newcommand{\bX}{\textbf{X}}
+\newcommand{\bb}{\textbf{b}}
+\newcommand{\bu}{\textbf{u}}
+\newcommand{\bv}{\textbf{v}}
+\newcommand{\by}{\textbf{y}}
+\newcommand{\bx}{\textbf{x}}
+\newcommand{\be}{\textbf{e}}
+\newcommand{\bz}{\textbf{z}}
+\newcommand{\bs}{\textbf{s}}
+\newcommand{\bw}{\textbf{w}}
+\newcommand{\bQ}{\textbf{Q}}
+\newcommand{\bphi}{\textbf{$\phi$}}
+\newcommand{\lsb}{\left[}
+\newcommand{\rsb}{\right]}
+\newcommand{\lrb}{\left(}
+\newcommand{\rrb}{\right)}
+\newcommand{\lcb}{\left\{}
+\newcommand{\rcb}{\right\}}
+\newcommand{\R}{\mbox{\BpBig R}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\Fk}{\mbox{\Sc F}}
+\newcommand{\bQF}{\textbf{Q}_{\mbox{\Sc F}}}
+\newcommand{\N}{{\cal N}}
+\newcommand{\xlz}{X_l(z)}
+\newcommand{\xhz}{X_h(z)}
+\newcommand{\xz}{X(z)}
+\newcommand{\pr}{ perfect reconstruction }
+\newcommand{\smb}{Smith-Barnwell }
+\newcommand{\xw}{X(e^{j\omega})}
+\newcommand{\xmw}{X(-e^{j\omega})}
+\newcommand{\dw}{D(e^{j\omega})}
+\newcommand{\dmw}{D(-e^{j\omega})}
+\newcommand{\ew}{E(e^{j\omega})}
+\newcommand{\emw}{E(-e^{j\omega})}
+\newcommand{\fw}{F_0(e^{j\omega})}
+\newcommand{\fmw}{F_0(-e^{j\omega})}
+\newcommand{\hoz}{H_1(z)}
+\newcommand{\hzz}{H_0(z)}
+\newcommand{\goz}{G_1(z)}
+\newcommand{\gzz}{G_0(z)}
+\newcommand{\hzw}{H_{0}(e^{j\omega})}
+\newcommand{\hzmw}{H_{0}(-e^{j\omega})}
+\newcommand{\hzcw}{H_{0}(e^{-j\omega})}
+\newcommand{\how}{H_1(e^{j\omega})}
+\newcommand{\homw}{H_1(-e^{j\omega})}
+\newcommand{\gzw}{G_0(e^{j\omega})}
+\newcommand{\gzmw}{G_0(-e^{j\omega})}
+\newcommand{\gow}{G_1(e^{j\omega})}
+\newcommand{\gomw}{G_1(-e^{j\omega})}
+\newcommand{\wl}{e^{-jwL}}
+\newcommand{\aqua}{\textit{AQua with OR }}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{definition}{Definition}
+\newenvironment{proof}{\noindent{\em Proof.}}{\ \hfill Q.E.D.}
+%\newtheorem{moduleCount}{L}
+\newcommand*{\labelfile}[1]{%
+  \label{file:#1}%
+}
+
+\lstset{ %
+  backgroundcolor=\color{white},  
+  basicstyle=\footnotesize,        
+  breakatwhitespace=false,         
+  breaklines=true,                
+  captionpos=b,                   
+  commentstyle=\color{DarkGreen},    
+  deletekeywords={...},           
+  escapeinside={\%*}{*)},         
+  extendedchars=true,           
+  keepspaces=true,                 
+  keywordstyle=\color{blue},       
+  language=C++,                    
+  morekeywords={*,...},           
+  numbers=left,                  
+  numbersep=5pt,                  
+  numberstyle=\tiny\color{mygray}, 
+  rulecolor=\color{black},        
+  showspaces=false,                
+  showstringspaces=false,         
+  showtabs=false,                  
+  stepnumber=1,                    
+  stringstyle=\color{mymauve}
+}
+
+
+\includeonly{
+prologue,
+manIntroduction,
+}
+
+\makeindex
+
+\begin{document}
+
+\pagenumbering{roman}
+\singlespacing
+\include{prologue}
+
+\setcounter{page}{1}        % set page counter
+\pagenumbering{arabic}      % set page number style
+\pagestyle{fancy}         % top right page numbers
+%\pagestyle{cornell}
+%\pagestyle{cornellc}       % centered page numbers, disables drafthead
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+
+\fancyhead{} % clear all fields
+
+\lhead{Chapter \thechapter}
+%\lhead{\thechapter}
+\chead{\leftmark}
+\rhead{\thepage}
+
+
+\lfoot{Chapter \thechapter}
+\cfoot{\copyright Stevens -- \today \mbox{} -- Project Name}
+\rfoot{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\singlespacing
+\include{manIntroduction}
+
+
+\bibliography{bibfile}
+%\bibliographystyle{unsrt}
+\bibliographystyle{IEEEtran}
+
+%\input{manual.ind}
+\printindex
+\end{document}
