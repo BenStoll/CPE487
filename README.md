@@ -34,3 +34,5 @@ h) Testing -- include any test-bench diagrams, code, and/or pictures of the work
 
 6.  Update Table I, which contains the history of updates.
 7.  Submit the full Lab PDF report.
+
+Labs 1 and 2 were completed by Candida Migueis, Labs 3 and 4 by Benjamin Stoll, and 5 and 6 by Nicholas Piotrowski.
