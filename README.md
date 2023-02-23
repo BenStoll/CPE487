@@ -1,6 +1,6 @@
 # CPE487
 ## Digital System Design Workbooks
-The following documents were started within OverLeaf and transferred to TeXnicc using MikTeX. The reports should be lain out as follows
+The following documents were started within OverLeaf and transferred to TeXnicCenter using MikTeX. The reports should be lain out as follows
 1.  Create a new Overleaf project, names CPE_487_Labs.
 2.  In the introduction chapter add a small bio of all the team members.
 3.  Add six different .tex files named: xyzLab1, xyzLab2, ... xyzLab6, where xyz is the namespace you use for your project.  Default is "man" from manual
