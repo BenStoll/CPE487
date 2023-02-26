@@ -13,16 +13,18 @@ https://github.com/kevinwlu/dsd/tree/master/Nexys-A7Links to an external site.
   + Schematics and Block Diagrams -- include drawings that describe the electronics and block diagrams of what's been implemented in the lab.
   + VHDL Architecture -- describe any new ideas you've learned from the lab, and include any VHDL code you found useful.
   + VHDL Models -- Describe the following models you've encountered in the lab:
-Data-flow
+  
+  
+  + Data-flow
 
     - A data-flow style architecture specifies a circuit as a concurrent represen- tation of the flow of
     data through the circuit. In the data-flow approach, circuits are described by showing the input
     and output relationships be- tween the various built-in components of the VHDL language.
-    Structural
-    - The term structural modeling is the terminology that VHDL uses for modular design. The VHDL
+  + Structural
+    - The term structural modeling is the terminology that VHDL uses for modular design. The       + VHDL
     modular design approach directly supports hierarchical design which is essentially employed
     when attempting to understand complex digital designs.
-    Behavioral
+  + Behavioral
     - The behavioral style models how the circuit outputs will react to the circuit inputs. Whereas in data-flow modeling you somewhat need to have a feel for the underlying logic in the circuit,
     behavioral models provide you with various tools to describe how the circuit will behave and
     leave the implementation details up to the synthesis tool.
