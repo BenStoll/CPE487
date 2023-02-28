@@ -11,6 +11,7 @@
   6. Video game PONG
 - The Final Project is as follows:
   + A game that mimics tetris using ________ (not yet decided).
-  + This involves ____________
+  + This involves ____________ PMODs.
   + The work will be divided up by ___________.
+  + The music will be ______ designed by __________.
   + ..............
