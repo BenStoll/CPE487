@@ -12,6 +12,6 @@
 - The Final Project is as follows:
   + A game that mimics tetris using the board as the operator and it will also have a sound output and visual output. The future pieces can be displayed on the right side of the board LED display and then the left side of the display will show the users score. (not yet decided).
   + This involves a monitor and Hex Number Pad and the Sound Output Pmods.
-  + The work will be divided up by ___________.
+  + The work will be divided up by Pmod roughly.
   + The music will be ______ designed by __________.
   + ..............
