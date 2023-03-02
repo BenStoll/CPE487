@@ -2,8 +2,8 @@
 2.  In the manIntroduction.tex file add a brief description of each of your team members.
 3.  Add a new chapter called manProjectDescription.tex and title the chapter as: "Project Description"
 4.  Provide a final project description.  Provide as much detail as possible, including (in \section{} headings):
-a)  Description: A paragraph describing what you'd like to achieve.
-b)  Requirements: A list of requirements for your final project.  This can include business and/or user requirements.
-c)  Block Diagram: High level block diagrams of your project architecture, as you understand it at this time.
-d) Risks: A list of risks and potential mitigation ideas.
-e) Testing: Plans to use testing and test files for the testbench part of the simulation.
+  a)  Description: A paragraph describing what you'd like to achieve.
+  b)  Requirements: A list of requirements for your final project.  This can include business and/or user requirements.
+  c)  Block Diagram: High level block diagrams of your project architecture, as you understand it at this time.
+  d) Risks: A list of risks and potential mitigation ideas.
+  e) Testing: Plans to use testing and test files for the testbench part of the simulation.
