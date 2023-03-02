@@ -1,4 +1,4 @@
-#Final Project Description
+Final Project Description
 
 This section is about the Final Project Proposal whihc is due 3/2/23 at 11:59pm
 1.  Using the Openleaf project, create a new "CPE 487 Final Project" project.
