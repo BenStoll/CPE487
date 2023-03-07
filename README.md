@@ -11,7 +11,7 @@
   6. [Video game PONG](https://github.com/BenStoll/CPE487/blob/main/LabManual/sixLab6.tex)
 - The [Final Project](https://github.com/BenStoll/CPE487/tree/main/FinalProject) is as follows:
   + A game that mimics tetris using the board as the operator and it will also have a sound output and visual output. The future pieces can be displayed on the right side of the board LED display and then the left side of the display will show the users score. (not yet decided).
-  + This involves a monitor and Hex Number Pad and the Sound Output Pmods.
-  + The work will be divided up by Pmod roughly.
+  + This involves a monitor and [Hex Number Pad](https://digilent.com/shop/pmod-kypd-16-button-keypad/) and the [Sound Output Pmods](https://digilent.com/shop/pmod-i2s2-stereo-audio-input-and-output/).
+  + The work will be divided up by Pmod roughly, however we will need to work as a group to get the game up and running for the beginning.
   + The music will be ______ designed by __________.
   + ..............
