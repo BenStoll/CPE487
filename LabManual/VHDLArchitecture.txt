@@ -1,3 +1,10 @@
+INFO?
+The Architecture will be the xdc file which shows which ports are being utilized and what is being written to them. This also should be a little explaination of the xdc file.
+The Data flow is how the code sends stuff (inputs and outputs of each file)what files are linked to other files and then where that data goes afterwards (outputs/pmods)
+The Structural is how each file's modularity works as in what files are underneath what (See Vivado)
+The Behavioral is how the overall circuit board works under specific inputs and what each input outputs.
+
+
 Lab 2: Hexcount.xdc
 
 #FPGA I/0 Locations
