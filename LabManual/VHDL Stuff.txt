@@ -1,0 +1,4 @@
+The Architecture will be the xdc file which shows which ports are being utilized and what is being written to them.
+The Data flow s what files are linked to other files and then where that data goes afterwards (outputs/pmods)
+The Structural is how each file works and what they output
+The behavioral is how the overall program works under specific situations and conditions.
