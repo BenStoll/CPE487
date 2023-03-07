@@ -1,67 +1,89 @@
-\chapter{Lab 3: Bouncing Ball \\
-\index{Lab 3}
+\chapter{Lab 4: Hex Calculator \\
+\index{Lab 4}
 \index{introduction}
 \label{Introduction}}
 
-\section{Lessons Learned \label{Section::Lessons Learned}}
-    We learned how to use an FPGA to write to a display and how it changes with each cycle of the clock and then combined it with a previous lab (Adder Lab) to change the speed of the ball by flipping switches on the board and then we changed the color of the ball. After that, the final alteration that we made was to convert the moving ball to a pong style game with a paddle controlled by a dial to prevent the ball from touching the bottom of the screen. 
 
-    We used the VGA port on the board to connect to a television. What this lab was teaching us was how to use different types of add ons to the board and how we would need to alter the code within. 
+\section{Lessons Learned
+    We learned how to use the buttons on the board to perform different functions. This would be useful for our final project so we will take the pad to try and utilize the number pad to control the blocks. 
+\label{Section::Lessons Learned}}
  \section{Schematics and Block Diagrams}
-    The schematics
- \section{VHDL Architecture}
-    add xdc file and add the files 
-    \begin{verbatim}
-    ## Clock signal
-    set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { clk_in }]; #IO_L12P_T1_MRCC_35 Sch=clk100mhz
-    create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {clk_in }];
-            
-    ##VGA Connector            
-    set_property -dict { PACKAGE_PIN A3    IOSTANDARD LVCMOS33 } [get_ports { vga_red[0] }]; #IO_L8N_T1_AD14N_35 Sch=vga_r[0]
-    set_property -dict { PACKAGE_PIN B4    IOSTANDARD LVCMOS33 } [get_ports { vga_red[1] }]; #IO_L7N_T1_AD6N_35 Sch=vga_r[1]
-    set_property -dict { PACKAGE_PIN C5    IOSTANDARD LVCMOS33 } [get_ports { vga_red[2] }]; #IO_L1N_T0_AD4N_35 Sch=vga_r[2]
-            
-    set_property -dict { PACKAGE_PIN C6    IOSTANDARD LVCMOS33 } [get_ports { vga_green[0] }]; #IO_L1P_T0_AD4P_35 Sch=vga_g[0]
-    set_property -dict { PACKAGE_PIN A5    IOSTANDARD LVCMOS33 } [get_ports { vga_green[1] }]; #IO_L3N_T0_DQS_AD5N_35 Sch=vga_g[1]
-    set_property -dict { PACKAGE_PIN B6    IOSTANDARD LVCMOS33 } [get_ports { vga_green[2] }]; #IO_L2N_T0_AD12N_35 Sch=vga_g[2]
+    \includegraphics[width=100mm]{lab4/hexcalc.png}
+    \emph{Figure 4.1: Input and Output of the System}
     
-    set_property -dict { PACKAGE_PIN B7    IOSTANDARD LVCMOS33 } [get_ports { vga_blue[0] }]; #IO_L2P_T0_AD12P_35 Sch=vga_b[0]
-    set_property -dict { PACKAGE_PIN C7    IOSTANDARD LVCMOS33 } [get_ports { vga_blue[1] }]; #IO_L4N_T0_35 Sch=vga_b[1]
-            
-    set_property -dict { PACKAGE_PIN B11   IOSTANDARD LVCMOS33 } [get_ports { vga_hsync }]; #IO_L4P_T0_15 Sch=vga_hs
-    set_property -dict { PACKAGE_PIN B12   IOSTANDARD LVCMOS33 } [get_ports { vga_vsync }]; #IO_L3N_T0_DQS_AD1N_15 Sch=vga_vs
-    \end{verbatim}
- \section{VHDL Models}
- 
-    \begin{enumerate}
-        \item Data Flow Architecture
-            \begin{verbatim}
-                ball.vhd
-                    input: pixel row and column
-                    output: color of that pixel (RGB)
-                vga_sync.vhd
-                    input: pixel clock, color in (RGB, background),
-                    output: Pixel Location, color out (RGB)
-                vga_top.vhd
-                    input: clock
-                    output: color of background (RGB)
-            \end{verbatim}
-        \item Structural Modeling
-            \begin{verbatim}
-                vga_top 
-                    add_ball : ball
-                    vga_driver : vga_sync
-                    clk_wiz_0)inst : clk_wiz_0
-                        U0 : clk_wiz_clk_wiz
-            \end{verbatim}
-        \item Behavioral Models
-            The program has one input and that is switches on the board which dictate the speed of the ball on the screen. This is primarily a binary conversion from the number of switches up to 7 turned on. 
-     \end{enumerate}
+ \section{VHDL Architecture}
+ \begin{verbatim}
+     ## Clock signal
+    set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { clk_50MHz }]; #IO_L12P_T1_MRCC_35 Sch=clk100mhz
+    create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {clk_50MHz}];
 
+    ##Buttons
+
+    #set_property -dict { PACKAGE_PIN C12   IOSTANDARD LVCMOS33 } [get_ports { CPU_RESETN }]; #IO_L3P_T0_DQS_AD1P_15 Sch=cpu_resetn
+
+    set_property -dict { PACKAGE_PIN N17   IOSTANDARD LVCMOS33 } [get_ports { bt_clr }]; #IO_L9P_T1_DQS_14 Sch=btnc
+    set_property -dict { PACKAGE_PIN M18   IOSTANDARD LVCMOS33 } [get_ports { bt_plus }]; #IO_L4N_T0_D05_14 Sch=btnu
+    set_property -dict { PACKAGE_PIN P17   IOSTANDARD LVCMOS33 } [get_ports { bt_eq }]; #IO_L12P_T1_MRCC_14 Sch=btnl
+    #set_property -dict { PACKAGE_PIN M17   IOSTANDARD LVCMOS33 } [get_ports { BTNR }]; #IO_L10N_T1_D15_14 Sch=btnr
+    set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { bt_sub }]; #IO_L9N_T1_DQS_D13_14 Sch=btnd
+
+    ##Pmod Header JA
+
+    set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { KB_col[4] }]; #IO_L20N_T3_A19_15 Sch=ja[1]
+    set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { KB_col[3] }]; #IO_L21N_T3_DQS_A18_15 Sch=ja[2]
+    set_property -dict { PACKAGE_PIN E18   IOSTANDARD LVCMOS33 } [get_ports { KB_col[2] }]; #IO_L21P_T3_DQS_15 Sch=ja[3]
+    set_property -dict { PACKAGE_PIN G17   IOSTANDARD LVCMOS33 } [get_ports { KB_col[1] }]; #IO_L18N_T2_A23_15 Sch=ja[4]
+    set_property -dict { PACKAGE_PIN D17   IOSTANDARD LVCMOS33 } [get_ports { KB_row[4] }]; #IO_L16N_T2_A27_15 Sch=ja[7]
+    set_property -dict { PACKAGE_PIN E17   IOSTANDARD LVCMOS33 } [get_ports { KB_row[3] }]; #IO_L16P_T2_A28_15 Sch=ja[8]
+    set_property -dict { PACKAGE_PIN F18   IOSTANDARD LVCMOS33 } [get_ports { KB_row[2] }]; #IO_L22N_T3_A16_15 Sch=ja[9]
+    set_property -dict { PACKAGE_PIN G18   IOSTANDARD LVCMOS33 } [get_ports { KB_row[1] }]; #IO_L22P_T3_A17_15 Sch=ja[10]
+
+    ##7-Segment Display
+    set_property -dict {PACKAGE_PIN L18 IOSTANDARD LVCMOS33} [get_ports {SEG7_seg[0]}]
+    set_property -dict {PACKAGE_PIN T11 IOSTANDARD LVCMOS33} [get_ports {SEG7_seg[1]}]
+    set_property -dict {PACKAGE_PIN P15 IOSTANDARD LVCMOS33} [get_ports {SEG7_seg[2]}]
+    set_property -dict {PACKAGE_PIN K13 IOSTANDARD LVCMOS33} [get_ports {SEG7_seg[3]}]
+    set_property -dict {PACKAGE_PIN K16 IOSTANDARD LVCMOS33} [get_ports {SEG7_seg[4]}]
+    set_property -dict {PACKAGE_PIN R10 IOSTANDARD LVCMOS33} [get_ports {SEG7_seg[5]}]
+    set_property -dict {PACKAGE_PIN T10 IOSTANDARD LVCMOS33} [get_ports {SEG7_seg[6]}]
+
+    set_property -dict {PACKAGE_PIN U13 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[7]}]
+    set_property -dict {PACKAGE_PIN K2 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[6]}]
+    set_property -dict {PACKAGE_PIN T14 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[5]}]
+    set_property -dict {PACKAGE_PIN P14 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[4]}]
+    set_property -dict {PACKAGE_PIN J14 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[3]}]
+    set_property -dict {PACKAGE_PIN T9 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[2]}]
+    set_property -dict {PACKAGE_PIN J18 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[1]}]
+    set_property -dict {PACKAGE_PIN J17 IOSTANDARD LVCMOS33} [get_ports {SEG7_anode[0]}]
+ \end{verbatim}
+ \section{VHDL Models}
+ \begin{itemize}
+     \item Data Flow
+        \begin{verbatim}
+            hexcalc.vhd
+                input: clock at 50 MHz, calculator functions ('+', '=', '-', and 'clear')
+                output: keyboard column pins 
+            keyboard.vhd
+                input: row lines
+                output: hex value of a key press, column lines
+            leddec16.vhd
+                input: digit display, and 16 digit data
+                output: anode display, segment code for each digit
+        \end{verbatim}
+     \item Structural
+        \begin{verbatim}
+            hexcalc
+                kp1 : keypad
+                led1 : leddec16
+        \end{verbatim}
+     \item Behavioral
+        The program inputs are primarily coming from the 16-button keypad module and buttons on the FPGA board. The keypad dictates what values are used which is displayed on the board's LEDs and then the buttons on the board dictate whether it is adding or subtraction. After the calculator portion the answer is displayed on the board. 
+\end{itemize}
  \section{VHDL Component Reuse}
-    The program reuses the FPGA board, switches on the board and it also reuses some of the logic from earlier labs. However, most of the lab was new and it is due to the fact that it is writing to the VGA port. We had to change the size and color of the ball so that was changed between iterations and the ball was able to move vertically as well as horizontally. 
+    This section reuses the LED section from Labs 1 and 2 and then combined them together with using the button to make a hexadecimal calculator.
  \section{VHDL Digital Circuits}
     
  \section{State Machines}
-    The circuit is idle while booting, however the program runs until turned off due to the nature of the program (bouncing ball). 
+    The system is idle until a button is pressed on the key pad and then displays the number on the LED bank and then returns to idle until another number is pushed or a function button is pressed. Then after pushing the enter button, the board displays the answer and then returns to idle state. 
  \section{Testing}
+    We tested this by inputting different numbers on the pad. We did notice that if you cause a negative number on the pad, it overflows and fills the entire LED bank. We added and subtracted random numbers to see how the board would respond to different inputs. 
