@@ -8,9 +8,10 @@
 
     We used the VGA port on the board to connect to a television. What this lab was teaching us was how to use different types of add ons to the board and how we would need to alter the code within. 
  \section{Schematics and Block Diagrams}
-    The schematics
+    
  \section{VHDL Architecture}
- \begin{verbatim}
+    add xdc file and add the files 
+    \begin{verbatim}
     ## Clock signal
     set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { clk_in }]; #IO_L12P_T1_MRCC_35 Sch=clk100mhz
     create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {clk_in }];
@@ -34,19 +35,34 @@
  
     \begin{enumerate}
         \item Data Flow Architecture
+            \begin{verbatim}
+                ball.vhd
+                    input: pixel row and column
+                    output: color of that pixel (RGB)
+                vga_sync.vhd
+                    input: pixel clock, color in (RGB, background),
+                    output: Pixel Location, color out (RGB)
+                vga_top.vhd
+                    input: clock
+                    output: color of background (RGB)
+            \end{verbatim}
         \item Structural Modeling
             \begin{verbatim}
-                    vga_top 
-                        add_ball : ball
-                        vga_driver : vga_sync
-                        clk_wiz_0)inst : clk_wiz_0
-                            U0 : clk_wiz_clk_wiz
+                vga_top 
+                    add_ball : ball
+                    vga_driver : vga_sync
+                    clk_wiz_0)inst : clk_wiz_0
+                        U0 : clk_wiz_clk_wiz
             \end{verbatim}
         \item Behavioral Models
             The program has one input and that is switches on the board which dictate the speed of the ball on the screen. This is primarily a binary conversion from the number of switches up to 7 turned on. 
      \end{enumerate}
 
  \section{VHDL Component Reuse}
+    The program reuses the FPGA board, switches on the board and it also reuses some of the logic from earlier labs. However, most of the lab was new and it is due to the fact that it is writing to the VGA port. We had to change the size and color of the ball so that was changed between iterations and the ball was able to move vertically as well as horizontally. 
  \section{VHDL Digital Circuits}
+    
  \section{State Machines}
+    The circuit is idle while booting, however the program runs until turned off due to the nature of the program (bouncing ball). 
  \section{Testing}
+    We tested it by inputting different values for the speed and color of the ball and then reprogramming the board to see how it will affect the display. 
