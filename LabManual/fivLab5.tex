@@ -118,9 +118,20 @@ set_property -dict { PACKAGE_PIN R13   IOSTANDARD LVCMOS33 } [get_ports { SW7 }]
                  \end{itemize}
              \end{itemize}
          \end{itemize}
-     \item Behavioral
+     \item Behavioral\\
+     \begin{itemize}
+        \item BTNU : creates square wave instead of triangle wave
+        \item SW0-SW7 : set wailing speed
+        \item Different audio channels : high and low tone limits
+        \item siren : outputs audio
+    \end{itemize}
  \end{itemize}
  \section{VHDL Component Reuse}
+ This section reuses the BTNU button - it creates a square wave in this lab.
  \section{VHDL Digital Circuits}
+    \includegraphics[width=100mm]{lab5/dacsirenimgthing.png}
+    \emph{Figure 5.2: Image of the Digital Architecture and Circuit}
  \section{State Machines}
+ System outputs a triangle wave at a set wailing speed until a button is pressed to change the wave, a switch is flipped to change the speed, or the audio channel is switched to change the tone limit.
  \section{Testing}
+ We tested this by flipping different switches, pressing BTNU, and switching the audio channel.  We flipped multiple switches to see how drastically the wailing speed changes with the switches.
