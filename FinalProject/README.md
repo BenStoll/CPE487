@@ -1,6 +1,6 @@
-Final Project Description
+#Final Project Description
 
-This section is about the Final Project Proposal which is due 3/2/23 at 11:59pm
+##This section is about the Final Project Proposal which is due 3/2/23 at 11:59pm
 1.  Using the Openleaf project, create a new "CPE 487 Final Project" project.
 2.  In the manIntroduction.tex file add a brief description of each of your team members.
 3.  Add a new chapter called manProjectDescription.tex and title the chapter as: "Project Description"
