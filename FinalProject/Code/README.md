@@ -12,5 +12,13 @@ Layout of the code in terms of modularity
   - If row == 1
   - when a space (5px X 5px) is filled its 1 or on, else it's 0 or off
   - colors can be a different 'value' for the number like 1 be red 2 be yellow, etc.
+  - [HTML Reference](https://gist.github.com/straker/3c98304f8a6a9174efd8292800891ea1)
+  - [2D Arrays for pieces](https://nandland.com/arrays/)
+  - Array for the game board?
 + File for the inputs/controls + outputs on the board other than the VGA
   - Score, Block up next, Controls (L/R Slam 
+
+
+
++ [Reference](https://github.com/mtootoonchi/Tetris)
+
