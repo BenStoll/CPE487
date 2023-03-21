@@ -11,6 +11,13 @@ Layout of the code in terms of modularity
 + File to 'destroy' blocks - Line completion and then shift down the remaining blocks A * 5px where A is number of rows removed relative
   - If row == 1
   - when a space (5px X 5px) is filled its 1 or on, else it's 0 or off
+    -- Nested loop for rows and columns
+      --- Initialize temp variable rowFilled = 1;
+      --- Loop through row, rowFilled ** = value in column;
+      --- if(rowFilled != 0)
+      ---- clearLine(); // has playSound and deleteLine called in it
+      ----- playSound(); // line cleared sound
+      ----- deleteLine(); // which also shifts everything above down
   - colors can be a different 'value' for the number like 1 be red 2 be yellow, etc.
   - [HTML Reference](https://gist.github.com/straker/3c98304f8a6a9174efd8292800891ea1)
   - [2D Arrays for pieces](https://nandland.com/arrays/)
