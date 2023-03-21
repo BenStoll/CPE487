@@ -12,3 +12,4 @@ This section is about the Final Project Proposal which is due 3/2/23 at 11:59pm
 -  Testing: Plans to use testing and test files for the testbench part of the simulation.
 
 [Reference](https://github.com/mtootoonchi/Tetris)
+[Reference](https://gist.github.com/straker/3c98304f8a6a9174efd8292800891ea1)
