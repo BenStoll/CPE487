@@ -10,3 +10,5 @@ This section is about the Final Project Proposal which is due 3/2/23 at 11:59pm
 -  Block Diagram: High level block diagrams of your project architecture, as you understand it at this time.
 -  Risks: A list of risks and potential mitigation ideas.
 -  Testing: Plans to use testing and test files for the testbench part of the simulation.
+
+[Reference](https://github.com/mtootoonchi/Tetris/blob/main/code/ddfs_core.h)
