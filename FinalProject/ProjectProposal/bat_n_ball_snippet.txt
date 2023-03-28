@@ -2,17 +2,26 @@ BEGIN
     red <= NOT bat_on; -- color setup for red ball and cyan bat on white background
     green <= NOT ball_on;
     blue <= NOT ball_on;
+    --Setting color for the ball/bat if not bat, then it is the background.
+    
+    
     -- process to draw round ball
     -- set ball_on if current pixel address is covered by ball position
     balldraw : PROCESS (ball_x, ball_y, pixel_row, pixel_col) IS
         VARIABLE vx, vy : STD_LOGIC_VECTOR (10 DOWNTO 0); -- 9 downto 0
+        --vx and vy are ___________________________________
     BEGIN
         IF pixel_col <= ball_x THEN -- vx = |ball_x - pixel_col|
             vx := ball_x - pixel_col;
+            -- if the ball is past the right most column, send the ball back to the left
         ELSE
             vx := pixel_col - ball_x;
+            -- else send to right
+            
+            
         END IF;
         IF pixel_row <= ball_y THEN -- vy = |ball_y - pixel_row|
+        --stop if the ball is below the bottommost row
             vy := ball_y - pixel_row;
         ELSE
             vy := pixel_row - ball_y;
