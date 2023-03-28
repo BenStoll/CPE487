@@ -1,0 +1,25 @@
+BEGIN
+    red <= NOT bat_on; -- color setup for red ball and cyan bat on white background
+    green <= NOT ball_on;
+    blue <= NOT ball_on;
+    -- process to draw round ball
+    -- set ball_on if current pixel address is covered by ball position
+    balldraw : PROCESS (ball_x, ball_y, pixel_row, pixel_col) IS
+        VARIABLE vx, vy : STD_LOGIC_VECTOR (10 DOWNTO 0); -- 9 downto 0
+    BEGIN
+        IF pixel_col <= ball_x THEN -- vx = |ball_x - pixel_col|
+            vx := ball_x - pixel_col;
+        ELSE
+            vx := pixel_col - ball_x;
+        END IF;
+        IF pixel_row <= ball_y THEN -- vy = |ball_y - pixel_row|
+            vy := ball_y - pixel_row;
+        ELSE
+            vy := pixel_row - ball_y;
+        END IF;
+        IF ((vx * vx) + (vy * vy)) < (bsize * bsize) THEN -- test if radial distance < bsize
+            ball_on <= game_on;
+        ELSE
+            ball_on <= '0';
+        END IF;
+    END PROCESS;
