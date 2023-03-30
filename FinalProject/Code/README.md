@@ -29,3 +29,10 @@ Layout of the code in terms of modularity
 
 + [Reference](https://github.com/mtootoonchi/Tetris)
 
+Create a moveright and moveleft program name
+Map moveright and moveleft to btnL and btnR
+  Replicate btn0 mapped to serve to do this
+  
+  Move right updates ball position by 5 right
+    Does not update if at edge of screen
+  Moveleft just does this left
