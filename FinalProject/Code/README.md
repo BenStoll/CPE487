@@ -36,3 +36,11 @@ Map moveright and moveleft to btnL and btnR
   Move right updates ball position by 5 right
     Does not update if at edge of screen
   Moveleft just does this left
+  
+  
+  Testbench 
+    - Check for move left/right 
+    - Check for rotate L/R
+    - Clear row 
+    - Game over?
+    
