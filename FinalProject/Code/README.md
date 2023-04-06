@@ -44,3 +44,5 @@ Map moveright and moveleft to btnL and btnR
     - Clear row 
     - Game over?
     
+If the files get too long, modulate them plus ensure that we are making steady progress and adding logic diagrams for the code.
+
