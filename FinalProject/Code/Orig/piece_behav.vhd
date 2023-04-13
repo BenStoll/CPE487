@@ -82,8 +82,31 @@ begin
     green <= not sq_on;
     blue <= '1';
     
-    sqDraw : process (sq_x, sq_y, pixel_row, pixel_col) is
+    pDraw : process (sq_x, sq_y, pixel_row, pixel_col) is
     Begin
+    
+        IF(game_on = 1) THEN
+            --game turns on
+            --create a new piece
+            IF (board(0) /= "000000000000000" ) 
+                then 
+                game_on <= 0;
+                --game ends
+                
+            ELSE 
+                IF --Block in motion create a new block
+                Else -- Continue game
+                
+                IF -- 
+                -- create a new peiece rand number gen and set it to the top of the row
+                -- every second (ish) move down one
+                --if there is something in the array below it, then stop the movement of the 
+                --piece else move down
+                
+                --
+        ELSE 
+            --game ends
+    
         If (pixel_col >= sq_x - sq_size) AND (pixel_col <= sq_x + sq_size)
             AND (pixel_row >= sq_y - sq_size) AND (pixel_row <= sq_y + sq_size) THEN
                 sq_on <= '1';
@@ -91,18 +114,5 @@ begin
             sq_on <= '0';
             
         END IF;
-    
-    
-        IF (board(0) /= "000000000000000" ) 
-            then game_on <= 0;
-            
-        ELSE 
-            -- create a new peiece rand number gen and set it to the top of the row
-            -- every second (ish) move down one
-            --if there is something in the array below it, then stop the movement of the 
-            --piece else move down
-            
-            --
-    End Process;
 
-end Behavioral;
+    End process;
