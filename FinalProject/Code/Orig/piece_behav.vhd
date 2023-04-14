@@ -18,7 +18,6 @@
 -- 
 ----------------------------------------------------------------------------------
 
-
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_ARITH.ALL;
@@ -63,14 +62,17 @@ architecture Behavioral of piece_behav is
     --      0
     Signal sq_y_motion : STD_LOGIC_VECTOR(10 DOWNTO 0) := "000000001000";
     
-    type coord is array (0 to 9, 0 to 14) of std_logic;
-    signal board : coord := ("000000000000000", "000000000000000", 
-    "000000000000000", "000000000000000", "000000000000000", "000000000000000", 
-    "000000000000000", "000000000000000", "000000000000000", "000000000000000");  
+    type coord is array (0 to 14, 0 to 9) of std_logic; -- this is 15X 10 not 10X15 like it needs to be
+    signal board : coord := ("0000000000", "0000000000", "0000000000", "0000000000", 
+    "0000000000", "0000000000", "0000000000", "0000000000", "0000000000", "0000000000", 
+    "0000000000", "0000000000", "0000000000", "0000000000", "0000000000");  
     --initialize the game board as an array, each digit is 5 px
     --brute force piece rotation? lol i dont wanna do math :)
     type square is array (0 to 3, 0 to 3) of std_logic;
-    signal square_p : square := ("0000", "0110", "0110", "0000");
+    signal square_p : square := ("0000000000", 
+                                 "0000110000", 
+                                 "0000110000", 
+                                 "0000000000");
     
     -- nested for loop, i and j, i multiplies by the pixel value of each position, 
     --change the color
@@ -86,27 +88,50 @@ begin
     Begin
     
         IF(game_on = 1) THEN
-            --game turns on
-            --create a new piece
+            --game is on and a new piece will be generated
+            IF(new_piece = 0) -- if square piece is the randomly generate one
+            Then
+            board += square_p;
+            
+            IF(user input = right;)
+            Then
+            --boundary conditions check here
+            for (int i = 9; i--; i>= 0)
+                for (int j = 14; j--; j>= 0)
+                    if (board(i,j) = 1; AND i /= 9)
+                        Then 
+                            board(i+1,j) = 1;
+                            board(i,j) = 0;
+            IF (movability = '1') -- have the piece numbers be 1 and the board be 2
+            --then the mod of the piece and if it is 1 then the piece has a static block below it
+            Then
+             --add piece to game board
+            Else
+            --move piece down
+                return 0;
+                
+            If (check_row = '1') -- check to see if the row can be removed
+            then 
+                --remove row 
+            
+            
+            
+            
+            
+            
             IF (board(0) /= "000000000000000" ) 
                 then 
                 game_on <= 0;
-                --game ends
-                
-            ELSE 
-                IF --Block in motion create a new block
-                Else -- Continue game
-                
-                IF -- 
-                -- create a new peiece rand number gen and set it to the top of the row
-                -- every second (ish) move down one
-                --if there is something in the array below it, then stop the movement of the 
-                --piece else move down
-                
-                --
-        ELSE 
-            --game ends
-    
+--game ends
+--Block in motion create a new block
+-- Continue game
+-- 
+-- create a new peiece rand number gen and set it to the top of the row
+-- every second (ish) move down one
+--if there is something in the array below it, then stop the movement of the 
+--piece else move down
+--
+--game ends
         If (pixel_col >= sq_x - sq_size) AND (pixel_col <= sq_x + sq_size)
             AND (pixel_row >= sq_y - sq_size) AND (pixel_row <= sq_y + sq_size) THEN
                 sq_on <= '1';
@@ -116,3 +141,7 @@ begin
         END IF;
 
     End process;
+
+
+
+end Behavioral;
