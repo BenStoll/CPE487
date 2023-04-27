@@ -22,6 +22,7 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_ARITH.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -37,7 +38,7 @@ entity piece_behav is
     v_sync : IN STD_LOGIC;
     pixel_row : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
     pixel_col : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
-    bat_x : IN STD_LOGIC_VECTOR (10 DOWNTO 0); -- current bat x position
+    --bat_x : IN STD_LOGIC_VECTOR (10 DOWNTO 0); -- current bat x position
     serve : IN STD_LOGIC; -- initiates serve
     red : OUT STD_LOGIC;
     green : OUT STD_LOGIC;
@@ -45,9 +46,9 @@ entity piece_behav is
    );
 end piece_behav;
 
+
 architecture Behavioral of piece_behav is
     Constant sq_size : integer := 5;
-    
     Signal sq_on : std_logic;
     SIGNAL sq_x : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(400, 11);
     SIGNAL sq_y : STD_LOGIC_VECTOR(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(580, 11);
@@ -60,19 +61,24 @@ architecture Behavioral of piece_behav is
     --      |
     --       __________ 800
     --      0
-    Signal sq_y_motion : STD_LOGIC_VECTOR(10 DOWNTO 0) := "000000001000";
+    --Signal sq_y_motion : STD_LOGIC_VECTOR(4 downto 0) := "00000"; --(10 DOWNTO 0) := "000000001000";
+    --type coord is array (0 to 2) of std_logic_vector
     
-    type coord is array (0 to 14, 0 to 9) of std_logic; -- this is 15X 10 not 10X15 like it needs to be
+       
+    type coord is array(14 downto 0) of std_logic_vector(9 downto 0);
+    
     signal board : coord := ("0000000000", "0000000000", "0000000000", "0000000000", 
     "0000000000", "0000000000", "0000000000", "0000000000", "0000000000", "0000000000", 
     "0000000000", "0000000000", "0000000000", "0000000000", "0000000000");  
+    --signal board : coord := ("0", "0", "0");
+    
     --initialize the game board as an array, each digit is 5 px
     --brute force piece rotation? lol i dont wanna do math :)
     type square is array (0 to 3, 0 to 3) of std_logic;
-    signal square_p : square := ("0000000000", 
-                                 "0000110000", 
-                                 "0000110000", 
-                                 "0000000000");
+--    signal square_p : square := ("0000110000", 
+--                                 "0000110000", 
+--                                 "0000000000", 
+--                                 "0000000000");
     
     -- nested for loop, i and j, i multiplies by the pixel value of each position, 
     --change the color
@@ -84,64 +90,51 @@ begin
     green <= not sq_on;
     blue <= '1';
     
-    pDraw : process (sq_x, sq_y, pixel_row, pixel_col) is
+    pDraw : PROCESS (sq_x, sq_y, pixel_row, pixel_col) is
     Begin
-    
+        --serve can now be connectted to start the game;
+        If(rising_edge(v_sync)) 
+        THEN
+        --WAIT FOR 1000 NS;
         IF(game_on = 1) THEN
-            --game is on and a new piece will be generated
-            IF(new_piece = 0) -- if square piece is the randomly generate one
-            Then
-            board += square_p;
+            -- game is on and a new piece will be generated
+            -- IF(new_piece = 0) -- if square piece is the randomly generate one
+            board(0) <= board(0) + 1;
             
-            IF(user input = right;)
-            Then
-            --boundary conditions check here
-            for (int i = 9; i--; i>= 0)
-                for (int j = 14; j--; j>= 0)
-                    if (board(i,j) = 1; AND i /= 9)
-                        Then 
-                            board(i+1,j) = 1;
-                            board(i,j) = 0;
-            IF (movability = '1') -- have the piece numbers be 1 and the board be 2
-            --then the mod of the piece and if it is 1 then the piece has a static block below it
-            Then
-             --add piece to game board
-            Else
-            --move piece down
-                return 0;
+            IF (board(0) = 3) Then
+                game_on <= 0; 
+            End If;
+            
+            FOR i IN 0 to 2 loop 
+                IF (board(i) = 1 and i = 2) Then  -- This is appending to board if at the bottom row
+                    board(i) <= board(i)+ 1;
                 
-            If (check_row = '1') -- check to see if the row can be removed
-            then 
-                --remove row 
-            
-            
-            
-            
-            
-            
-            IF (board(0) /= "000000000000000" ) 
-                then 
-                game_on <= 0;
+                ELSIF( board(i) + board(i + 1) = 3) Then -- checks if piece is below it
+                    -- if so add 
+                        board(i) <= board(i) + 1;
+                ELSE
+                    board(i) <= board(i) - 1; -- remove old piece location
+                    board(i+1) <= board(i+1) + 1; -- update new piece location
+                end IF;
+                
+            END loop;
+        END IF;
+        END IF;
+    END PROCESS;
 --game ends
 --Block in motion create a new block
 -- Continue game
--- 
 -- create a new peiece rand number gen and set it to the top of the row
 -- every second (ish) move down one
 --if there is something in the array below it, then stop the movement of the 
 --piece else move down
---
 --game ends
-        If (pixel_col >= sq_x - sq_size) AND (pixel_col <= sq_x + sq_size)
-            AND (pixel_row >= sq_y - sq_size) AND (pixel_row <= sq_y + sq_size) THEN
-                sq_on <= '1';
-        else
-            sq_on <= '0';
-            
-        END IF;
 
-    End process;
-
-
-
-end Behavioral;
+--        If (pixel_col >= sq_x - sq_size) AND (pixel_col <= sq_x + sq_size)
+--            AND (pixel_row >= sq_y - sq_size) AND (pixel_row <= sq_y + sq_size) THEN
+--                sq_on <= '1';
+--        else
+--            sq_on <= '0';
+--        END IF;
+    
+END Behavioral;
